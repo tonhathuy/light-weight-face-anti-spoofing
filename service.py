@@ -85,7 +85,7 @@ async def predict(data: PredictData):
             predicts = [{"fake" : label, "score": value}]
             
         return_result = {'code': '1000', 'status': rcode.code_1000, 'data': {'predicts': predicts,
-                        'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': 'base64 encoded file'}}
+                        'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': '-1: real, 1: fake'}}
     except Exception as e:
             logger.error(str(e))
             logger.error(str(traceback.print_exc()))
@@ -122,7 +122,7 @@ async def predict_binary(file: UploadFile = File(...)):
         
         predicts = [{"fake" : label, "score": value}]
         return_result = {'code': '1000', 'status': rcode.code_1000, 'data': {'predicts': predicts,
-                        'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': 'base64 encoded file'}}
+                        'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': '-1: real, 1: fake'}}
     except Exception as e:
             logger.error(str(e))
             logger.error(str(traceback.print_exc()))
