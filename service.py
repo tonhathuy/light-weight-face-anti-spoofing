@@ -82,7 +82,7 @@ async def predict(data: PredictData):
             label = 1 if output[0][1] > 0.65 else -1
             value = float(output[0][1]) if output[0][1] > 0.65 else float(output[0][0])
             
-            predicts = [{"fake" : label, "score": value}]
+            predicts = [{"isfake" : label, "score": value}]
             
         return_result = {'code': '1000', 'status': rcode.code_1000, 'data': {'predicts': predicts,
                         'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': '-1: real, 1: fake'}}
@@ -120,7 +120,7 @@ async def predict_binary(file: UploadFile = File(...)):
         label = 1 if output[0][1] > 0.65 else -1
         value = float(output[0][1]) if output[0][1] > 0.65 else float(output[0][0])
         
-        predicts = [{"fake" : label, "score": value}]
+        predicts = [{"isfake" : label, "score": value}]
         return_result = {'code': '1000', 'status': rcode.code_1000, 'data': {'predicts': predicts,
                         'process_time': timeit.default_timer()-start_time, 'WORKER_NUM': WORKER_NUM, 'return': '-1: real, 1: fake'}}
     except Exception as e:
